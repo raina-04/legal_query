@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 from contextlib import asynccontextmanager
 import time
+import os
 from sentence_transformers import SentenceTransformer
 import chromadb
 from pathlib import Path
@@ -290,15 +291,18 @@ async def http_exception_handler(request, exc):
 if __name__ == "__main__":
     import uvicorn
     
-    print("""Legal Query System - FastAPI Backend                                     
-       Access at: http://localhost:8000              
-       API Docs: http://localhost:8000/docs  """)        
+    # Get port from environment variable (Render provides this)
+    port = int(os.environ.get("PORT", 8000))
+    
+    print(f"""Legal Query System - FastAPI Backend                                     
+       Access at: http://0.0.0.0:{port}              
+       API Docs: http://0.0.0.0:{port}/docs  """)        
                                                      
     
     # Use import string to enable reload and workers
     uvicorn.run(
         "main:app",  # Import string format
         host="0.0.0.0",
-        port=8000,
-        reload=True  # Set to False in production
+        port=port,
+        reload=False  # Disabled for production deployment
     )
