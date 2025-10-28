@@ -9,7 +9,7 @@ collection = chroma_client.get_collection(name="ipc_legal_sections")
 
 # Load the model
 print("Loading model...")
-model = SentenceTransformer("all-mpnet-base-v2")
+model = SentenceTransformer("all-minilm-l6-v2")
 print("✅ Model loaded successfully!\n")
 
 # Interactive query loop
@@ -39,4 +39,5 @@ while True:
         print(f"{i}. Section: {meta['Section']}")
         print(f"   {doc[:200]}...")
         print()
+
     print("=" * 80 + "\n")
