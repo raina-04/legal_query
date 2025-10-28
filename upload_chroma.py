@@ -11,7 +11,7 @@ embeddings = model.encode(df["combined_text"].tolist(), show_progress_bar=True)
 print(f"✅ Embeddings generated! Shape: {embeddings.shape}")
 
 # Initialize ChromaDB client (PersistentClient for saving to disk)
-chroma_client = chromadb.PersistentClient(path="./chroma_legal_db")
+chroma_client = chromadb.PersistentClient(path="chroma_db")
 
 # Delete the collection if it exists to reset the embedding dimension
 #try:
@@ -32,3 +32,4 @@ collection.add(
 
 
 print("✅ Data successfully inserted into ChromaDB!")
+
