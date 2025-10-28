@@ -3,7 +3,7 @@ import chromadb
 from data_preprocess import df
 
 # Load a lightweight embedding model
-model = SentenceTransformer("all-mpnet-base-v2")
+model = SentenceTransformer("all-minilm-l6-v2")
 
 # Generate embeddings for legal text
 embeddings = model.encode(df["combined_text"].tolist(), show_progress_bar=True)
@@ -29,5 +29,6 @@ collection.add(
     documents=df["combined_text"].tolist(),
     metadatas=[{"Section": sec} for sec in df["Section"].tolist()]
 )
+
 
 print("✅ Data successfully inserted into ChromaDB!")
